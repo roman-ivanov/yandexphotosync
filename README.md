@@ -1,0 +1,4 @@
+yandexphotosync
+===============
+
+yandex photos synchronizer 
