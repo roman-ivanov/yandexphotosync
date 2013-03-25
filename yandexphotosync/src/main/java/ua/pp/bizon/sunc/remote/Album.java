@@ -6,8 +6,10 @@ public interface Album extends Collection, Entry {
 
     void createPhoto(String name, byte[] data) throws RemoteException;
 
-    Entry createAlbum(String name) throws RemoteException;
+    Album createAlbum(String name) throws RemoteException;
 
     boolean containsPhoto(String name);
+
+    Iterable<Entry> getPhotosIterable();
 
 }

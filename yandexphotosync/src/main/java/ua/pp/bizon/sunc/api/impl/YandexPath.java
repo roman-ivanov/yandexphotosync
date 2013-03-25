@@ -26,7 +26,7 @@ public class YandexPath implements Path {
 	}
 
 	@Override
-	public List<Path> listFiles() throws RemoteException {
+	public List<Path> listDirectories() throws RemoteException {
 		LinkedList<Path> response = new LinkedList<Path>();
 		if (path instanceof Collection) {
 			for (Entry i : (Collection) path) {
@@ -34,6 +34,17 @@ public class YandexPath implements Path {
 			}
 		}
 		return response;
+	}
+	
+	@Override
+	public List<Path> listFiles() throws RemoteException {
+	    LinkedList<Path> response = new LinkedList<Path>();
+        if (path instanceof Album) {
+            for (Entry i : ((Album) path).getPhotosIterable()) {
+                response.add(new YandexPath(i));
+            }
+        }
+        return response;
 	}
 
 	@Override
@@ -44,7 +55,7 @@ public class YandexPath implements Path {
 	@Override
 	public Path mkDirAndCD(String name) throws RemoteException {
 		if (path instanceof Collection) {
-			return new YandexPath(((Collection) path).createAlbum(name));
+			return new YandexPath(((Collection) path).getOrCreatePath(name));
 		} else
 			throw new RemoteException("path is not a directory: " + path);
 	}

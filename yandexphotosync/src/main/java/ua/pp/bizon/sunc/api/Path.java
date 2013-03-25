@@ -10,7 +10,7 @@ public interface Path {
 
     boolean isDirectory();
 
-    List<Path> listFiles() throws RemoteException;
+    List<Path> listDirectories() throws RemoteException;
 
     String getName();
 
@@ -21,5 +21,7 @@ public interface Path {
     void uploadData(String name, byte[] data) throws FileNotFoundException, IOException, RemoteException;
 
     boolean containsFile(String name) throws RemoteException;
+
+    List<Path> listFiles() throws RemoteException;
 
 }

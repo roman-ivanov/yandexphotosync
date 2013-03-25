@@ -14,11 +14,14 @@ import org.w3c.dom.Node;
 import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
+import ua.pp.bizon.sunc.remote.Photo;
 
 public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection {
 
     private CollectionImpl albums = new CollectionImpl();
     private CollectionImpl photos = new CollectionImpl();
+    
+    
 
     public AlbumImpl(Node item) {
         super(item);
@@ -79,7 +82,7 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
     }
 
     @Override
-    public Entry createAlbum(String name) throws RemoteException {
+    public Album createAlbum(String name) throws RemoteException {
         try {
             Album newEntry = YandexUtilsImpl.createAlbum(name, getUrl());
             return newEntry;
@@ -108,5 +111,10 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
         } else
             return "<entry xmlns=\"http://www.w3.org/2005/Atom\" xmlns:f=\"yandex:fotki\">\n" + "   <title>" + name
                     + "</title>\n" + "   <summary>" + name + "</summary>\n" + "</entry>";
+    }
+
+    @Override
+    public Iterable<Entry> getPhotosIterable() {
+        return photos;
     }
 }

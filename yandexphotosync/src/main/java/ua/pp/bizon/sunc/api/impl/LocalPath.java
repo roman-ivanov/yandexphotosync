@@ -1,6 +1,7 @@
 package ua.pp.bizon.sunc.api.impl;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 
 import ua.pp.bizon.sunc.api.Path;
+import ua.pp.bizon.sunc.remote.impl.RemoteException;
 
 public class LocalPath implements Path {
 
@@ -35,13 +37,28 @@ public class LocalPath implements Path {
     }
 
     @Override
-    public List<Path> listFiles() {
+    public List<Path> listDirectories() {
         LinkedList<Path> response = new LinkedList<Path>();
-        for (File i : path.listFiles(new FilenameFilter() {
-            
+        for (File i : path.listFiles(new FileFilter() {
+
             @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".jpg");
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }
+        })) {
+            response.add(new LocalPath(i));
+        }
+        return response;
+    }
+
+    @Override
+    public List<Path> listFiles() throws RemoteException {
+        LinkedList<Path> response = new LinkedList<Path>();
+        for (File i : path.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isFile() && pathname.getName().endsWith(".jpg");
             }
         })) {
             response.add(new LocalPath(i));
@@ -60,17 +77,17 @@ public class LocalPath implements Path {
         response.path.mkdirs();
         return response;
     }
-    
+
     @Override
     public boolean containsFile(String name) {
         return new File(path, name).isFile();
     }
-    
+
     @Override
     public byte[] getData() throws FileNotFoundException, IOException {
         return IOUtils.toByteArray(new FileInputStream(path));
     }
-    
+
     @Override
     public void uploadData(String name, byte[] data) throws FileNotFoundException, IOException {
         IOUtils.write(data, new FileOutputStream(new File(path, name)));
@@ -78,6 +95,7 @@ public class LocalPath implements Path {
 
     @Override
     public String toString() {
-        return "LocalPath [path=" + path + ", isDirectory()=" + isDirectory() + ", getName()=" + getName() + ", size=" + path.length() + "]";
+        return "LocalPath [path=" + path + ", isDirectory()=" + isDirectory() + ", getName()=" + getName() + ", size="
+                + path.length() + "]";
     }
 }

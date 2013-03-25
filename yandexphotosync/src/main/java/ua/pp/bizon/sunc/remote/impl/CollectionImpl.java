@@ -13,7 +13,7 @@ import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
 
-public class CollectionImpl implements Collection {
+public class  CollectionImpl implements Collection {
 
     private Map<String, Entry> mapByUrl = new HashMap<String, Entry>();
     private Map<String, Entry> mapByName = new HashMap<String, Entry>();
