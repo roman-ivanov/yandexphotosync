@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +37,13 @@ public class LocalPath implements Path {
     @Override
     public List<Path> listFiles() {
         LinkedList<Path> response = new LinkedList<Path>();
-        for (File i : path.listFiles()) {
+        for (File i : path.listFiles(new FilenameFilter() {
+            
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".jpg");
+            }
+        })) {
             response.add(new LocalPath(i));
         }
         return response;
@@ -71,6 +78,6 @@ public class LocalPath implements Path {
 
     @Override
     public String toString() {
-        return "LocalPath [path=" + path + ", isDirectory()=" + isDirectory() + ", getName()=" + getName() + "]";
+        return "LocalPath [path=" + path + ", isDirectory()=" + isDirectory() + ", getName()=" + getName() + ", size=" + path.length() + "]";
     }
 }

@@ -13,13 +13,17 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ua.pp.bizon.sunc.App;
 import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
 import ua.pp.bizon.sunc.remote.Photo;
+import ua.pp.bizon.sunc.remote.api.HttpUtil;
 
 public class ServiceEntry {
 
+    private HttpUtil httpUtil = App.context.getBean(HttpUtil.class);
+    
 	public ServiceEntry(String uri) throws SAXException, IOException,
 			ParserConfigurationException {
 		loadServiceDocument(uri);
@@ -40,7 +44,7 @@ public class ServiceEntry {
 
 	protected InputStream getStream(String uri) throws HttpException,
 			IOException {
-		return HttpUtil.getStream(uri);
+		return httpUtil.getStream(uri);
 	}
 
 	protected String getCollectionPath(String string) {
@@ -122,7 +126,7 @@ public class ServiceEntry {
 
     public Album createAlbum(String name, String url) throws RemoteException {
         try {
-            return (Album) getEntries(HttpUtil.postEntry(albums, AlbumImpl.createNewEntry(name, url))).iterator().next();
+            return (Album) getEntries(httpUtil.postEntry(albums, AlbumImpl.createNewEntry(name, url))).iterator().next();
         }catch(RemoteException e){
             throw e;
         }catch (Exception e) {
@@ -133,7 +137,7 @@ public class ServiceEntry {
 
     public Photo createPhoto(String name, byte[] data, String id) throws RemoteException {
         try {
-            return (Photo) getEntries(HttpUtil.postData(photos, name, data, id)).iterator().next();
+            return (Photo) getEntries(httpUtil.postData(photos, name, data, id)).iterator().next();
         }catch(RemoteException e){
             throw e;
         }catch (Exception e) {

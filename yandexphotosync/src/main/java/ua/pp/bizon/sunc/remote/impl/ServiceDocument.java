@@ -2,6 +2,8 @@ package ua.pp.bizon.sunc.remote.impl;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Photo;
@@ -16,7 +18,7 @@ public class ServiceDocument {
 		}
 	}
 
-	public Collection getAlbums() throws IOException, RemoteException {
+	public Collection getAlbums() throws RemoteException {
 		try {
 			return getServiceEntry().loadAlbums();
 		} catch (Exception e) {

@@ -1,0 +1,69 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:app="http://www.w3.org/2007/app" xmlns:f="yandex:fotki">
+  <id>urn:yandex:fotki:test-sync:photos</id>
+  <author>
+    <name>test-sync</name>
+    <f:uid>205099098</f:uid>
+  </author>
+  <title>test-sync на Яндекс.Фотках</title>
+  <updated>2013-03-25T17:05:25Z</updated>
+  <link href="http://api-fotki.yandex.ru/api/users/test-sync/photos/" rel="self" />
+  <link href="http://fotki.yandex.ru/users/test-sync/" rel="alternate" />
+  <entry>
+    <id>urn:yandex:fotki:test-sync:photo:704701</id>
+    <author>
+      <name>test-sync</name>
+      <f:uid>205099098</f:uid>
+    </author>
+    <title>man.jpg</title>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704701/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704701/" rel="edit" />
+    <link href="http://fotki.yandex.ru/users/test-sync/view/704701/" rel="alternate" />
+    <link href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_orig" rel="edit-media" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346455/" rel="album" />
+    <published>2013-03-25T17:05:25Z</published>
+    <app:edited>2013-03-25T17:05:25Z</app:edited>
+    <updated>2013-03-25T17:05:25Z</updated>
+    <f:access value="public" />
+    <f:xxx value="false" />
+    <f:hide_original value="false" />
+    <f:disable_comments value="false" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_XXS" size="XXS" width="75" />
+    <f:img height="512" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_XL" size="XL" width="512" />
+    <f:img height="300" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_M" size="M" width="300" />
+    <f:img height="500" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_L" size="L" width="500" />
+    <f:img height="50" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_XXXS" size="XXXS" width="50" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_S" size="S" width="150" />
+    <f:img height="100" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_XS" size="XS" width="100" />
+    <f:img bytesize="83464" height="512" href="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_orig" size="orig" width="512" />
+    <content src="http://img-fotki.yandex.ru/get/4119/205099098.0/0_ac0bd_d00dac8d_orig" type="image/*" />
+  </entry>
+  <entry>
+    <id>urn:yandex:fotki:test-sync:photo:704700</id>
+    <author>
+      <name>test-sync</name>
+      <f:uid>205099098</f:uid>
+    </author>
+    <title>D9o5GRxQ88M.jpg</title>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704700/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704700/" rel="edit" />
+    <link href="http://fotki.yandex.ru/users/test-sync/view/704700/" rel="alternate" />
+    <link href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_orig" rel="edit-media" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346454/" rel="album" />
+    <published>2013-03-25T17:05:24Z</published>
+    <app:edited>2013-03-25T17:05:24Z</app:edited>
+    <updated>2013-03-25T17:05:24Z</updated>
+    <f:access value="public" />
+    <f:xxx value="false" />
+    <f:hide_original value="false" />
+    <f:disable_comments value="false" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_XXS" size="XXS" width="75" />
+    <f:img height="600" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_XL" size="XL" width="591" />
+    <f:img height="300" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_M" size="M" width="296" />
+    <f:img height="500" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_L" size="L" width="493" />
+    <f:img height="50" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_XXXS" size="XXXS" width="50" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_S" size="S" width="148" />
+    <f:img height="100" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_XS" size="XS" width="99" />
+    <f:img bytesize="52467" height="600" href="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_orig" size="orig" width="591" />
+    <content src="http://img-fotki.yandex.ru/get/5645/205099098.0/0_ac0bc_7cd9c6d8_orig" type="image/*" />
+  </entry>
+</feed>

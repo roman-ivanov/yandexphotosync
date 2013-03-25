@@ -11,20 +11,11 @@ import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
 import ua.pp.bizon.sunc.remote.Photo;
 import ua.pp.bizon.sunc.remote.impl.RemoteException;
-import ua.pp.bizon.sunc.remote.impl.YandexUtilsImpl;
 
 public class YandexPath implements Path {
 
 	private Entry path;
-
-	public YandexPath(String path) throws PathNotSupportedException {
-		try {
-			this.path = YandexUtilsImpl.loadEntry(path);
-		} catch (Exception e) {
-			throw new PathNotSupportedException(e.getMessage(), e);
-		}
-	}
-
+	
 	public YandexPath(Entry i) {
 		this.path = i;
 	}

@@ -13,7 +13,8 @@ public class YandexUtilsImpl implements YandexUtils {
 
     static Logger logger = LoggerFactory.getLogger(YandexUtilsImpl.class);
 
-    public static Entry loadEntry(String path) throws RemoteException, IOException {
+    @Override
+    public Entry loadEntry(String path) throws RemoteException {
         ServiceDocument root = getRoot();
         return root.getAlbums().getOrCreatePath(path);
     }

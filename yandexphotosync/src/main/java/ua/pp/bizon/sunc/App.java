@@ -1,15 +1,31 @@
 package ua.pp.bizon.sunc;
 
-import ua.pp.bizon.sunc.api.impl.PathFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import ua.pp.bizon.sunc.api.PathFactory;
 
 /**
  * Hello world!
  * 
  */
 public class App {
-	public static void main(String[] args) throws Exception {
-		new Sync().sync(PathFactory.create("file:/Users/roman/Dropbox/Photos"),
-				PathFactory.create("yandex:/Dropbox/photos"));
-		System.out.println("done");
-	}
+    
+    public static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
+    static {
+        context.scan("ua.pp.bizon.sunc.api.impl");
+        context.refresh();
+    }
+    
+    public static void main(String[] args) throws Exception {
+       
+        try {
+            PathFactory factory = context.getBean(PathFactory.class);
+            new Sync().sync(factory.create("file:/Users/roman/Pictures/test"),
+                    factory.create("yandex:/test"));
+        } finally {
+            context.close();
+        }
+        System.out.println("done");
+    }
 }
