@@ -151,4 +151,10 @@ public class  CollectionImpl implements Collection {
         this.element = element;
     }
 
+
+    @Override
+    public boolean isEmpty() {
+        return mapByUrl.isEmpty();
+    }
+
 }

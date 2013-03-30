@@ -16,4 +16,8 @@ public class PhotoImpl extends AbstractEntry implements Entry, Photo {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "PhotoImpl[" + super.toString() + "]";
+    }
 }

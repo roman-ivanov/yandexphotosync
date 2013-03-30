@@ -9,18 +9,18 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 
 import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
+import ua.pp.bizon.sunc.remote.Photo;
 
 public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection {
 
     private CollectionImpl albums = new CollectionImpl(root);
-    private CollectionImpl photos = new CollectionImpl(root);
-    
-    
+    private Collection photos = new CollectionImpl(root);
 
     public AlbumImpl(Node item, ServiceDocument root) {
         super(item, root);
@@ -47,34 +47,36 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     @Override
     public String toString() {
-        return "AlbumImpl [collection=" + albums + ", " + super.toString() + "]";
+        return "AlbumImpl [albums=" + albums + ", photos=" + photos + ", " + super.toString() + "]";
     }
 
     @Override
     public Entry findEntryByName(String path) {
-        return albums.findEntryByName(path);
+        return albums.isEmpty() ? photos.findEntryByName(path) : albums.findEntryByName(path);
     }
 
     @Override
     public Entry findEntryByUrl(String url) {
-        return albums.findEntryByUrl(url);
+        return albums.isEmpty() ?photos.findEntryByUrl(url) : albums.findEntryByUrl(url);
     }
 
     @Override
     public Iterator<Entry> iterator() {
         return albums.iterator();
     }
-    
+
     @Override
     public void addAll(Collection entries) {
-         albums.addAll(entries);
+        for (Entry e : entries) {
+            addEntry(e);
+        }
     }
 
     @Override
     public void createPhoto(String name, byte[] data) throws RemoteException {
         root.createPhoto(name, data, getId());
     }
-    
+
     @Override
     public boolean containsPhoto(String name) {
         return photos.findEntryByName(name) != null;
@@ -94,7 +96,15 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     @Override
     public Entry addEntry(Entry e) {
-        return albums.addEntry(e);
+        if (e instanceof Photo) {
+            return photos.addEntry(e);
+        } else {
+            if (e.getName().equals("Неразобранное в " + getName()) && e instanceof Collection){
+                photos = (Collection) e;
+                LoggerFactory.getLogger(getClass()).debug("found unsorted");
+            }
+            return albums.addEntry(e);
+        }
     }
 
     @Override
@@ -115,5 +125,9 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
     @Override
     public Iterable<Entry> getPhotosIterable() {
         return photos;
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 }

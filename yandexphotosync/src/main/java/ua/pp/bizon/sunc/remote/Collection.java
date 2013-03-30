@@ -15,5 +15,7 @@ public interface Collection extends Iterable<Entry>{
     Entry getOrCreatePath(String path) throws RemoteException;
 
     void addAll(Collection entries);
+
+    public abstract boolean isEmpty();
 	
 }
