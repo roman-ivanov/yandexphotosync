@@ -14,17 +14,16 @@ import org.w3c.dom.Node;
 import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
-import ua.pp.bizon.sunc.remote.Photo;
 
 public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection {
 
-    private CollectionImpl albums = new CollectionImpl();
-    private CollectionImpl photos = new CollectionImpl();
+    private CollectionImpl albums = new CollectionImpl(root);
+    private CollectionImpl photos = new CollectionImpl(root);
     
     
 
-    public AlbumImpl(Node item) {
-        super(item);
+    public AlbumImpl(Node item, ServiceDocument root) {
+        super(item, root);
         albums.setElement(this);
     }
 
@@ -73,7 +72,7 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     @Override
     public void createPhoto(String name, byte[] data) throws RemoteException {
-        YandexUtilsImpl.createPhoto(name, data, getId());
+        root.createPhoto(name, data, getId());
     }
     
     @Override
@@ -84,7 +83,7 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
     @Override
     public Album createAlbum(String name) throws RemoteException {
         try {
-            Album newEntry = YandexUtilsImpl.createAlbum(name, getUrl());
+            Album newEntry = root.createAlbum(name, getUrl());
             return newEntry;
         } catch (RemoteException e) {
             throw e;

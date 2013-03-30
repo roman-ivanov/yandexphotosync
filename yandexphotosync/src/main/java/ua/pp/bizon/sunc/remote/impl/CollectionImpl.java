@@ -20,6 +20,12 @@ public class  CollectionImpl implements Collection {
     private Logger logger = LoggerFactory.getLogger(getClass());
     protected List<Entry> unsortedMapByUrl = new LinkedList<Entry>();
     private Album element;
+    private final ServiceDocument root;
+    
+    public CollectionImpl(ServiceDocument root) {
+        this.root = root;
+    }
+
 
     @Override
     public Entry addEntry(Entry e) {
@@ -115,7 +121,7 @@ public class  CollectionImpl implements Collection {
        if (element != null){
            return addEntry(element.createAlbum(name));
        }else {
-           return addEntry(YandexUtilsImpl.createAlbum(name));
+           return addEntry(root.createAlbum(name, null));
        }
     }
 

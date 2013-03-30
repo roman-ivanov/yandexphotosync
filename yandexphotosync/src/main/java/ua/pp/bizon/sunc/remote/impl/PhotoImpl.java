@@ -7,8 +7,8 @@ import ua.pp.bizon.sunc.remote.Photo;
 
 public class PhotoImpl extends AbstractEntry implements Entry, Photo {
 
-	public PhotoImpl(Node item) {
-		super(item);
+	public PhotoImpl(Node item, ServiceDocument root) {
+		super(item, root);
 	}
 
     @Override

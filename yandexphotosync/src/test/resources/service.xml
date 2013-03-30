@@ -1,4 +1,5 @@
- <app:service xmlns:app="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="UTF-8"?>
+<app:service xmlns:app="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom">
   <app:workspace>
     <atom:title>test-sync на Яндекс.Фотках</atom:title>
     <app:collection href="http://api-fotki.yandex.ru/api/users/test-sync/albums/" id="album-list">
@@ -8,11 +9,11 @@
     <app:collection href="http://api-fotki.yandex.ru/api/users/test-sync/photos/" id="photo-list">
       <atom:title>Все фотографии пользователя test-sync</atom:title>
       <app:accept>image/*</app:accept>
-      <app:categories scheme="http://api-fotki.yandex.ru/api/users/test-sync/tags/" />
+      <app:categories scheme="http://api-fotki.yandex.ru/api/users/test-sync/tags/"/>
     </app:collection>
     <app:collection href="http://api-fotki.yandex.ru/api/users/test-sync/tags/" id="tag-list">
       <atom:title>Все теги пользователя test-sync</atom:title>
-      <app:accept />
+      <app:accept/>
     </app:collection>
   </app:workspace>
 </app:service>

@@ -10,7 +10,7 @@ import ua.pp.bizon.sunc.api.PathFactory;
  */
 public class App {
     
-    public static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+    private static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
     static {
         context.scan("ua.pp.bizon.sunc.api.impl");
@@ -18,7 +18,6 @@ public class App {
     }
     
     public static void main(String[] args) throws Exception {
-       
         try {
             PathFactory factory = context.getBean(PathFactory.class);
             new Sync().sync(factory.create("file:/Users/roman/Pictures/test"),

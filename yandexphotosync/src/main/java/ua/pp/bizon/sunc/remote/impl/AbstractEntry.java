@@ -7,15 +7,17 @@ import ua.pp.bizon.sunc.remote.Entry;
 
 public abstract class AbstractEntry implements Entry {
 
-    protected Node element;
+    final protected Node element;
+    final protected ServiceDocument root;
     private Entry parent;
     private String parentUrl;
     private String selfUrl;
     private String title;
     private String id;
 
-    public AbstractEntry(Node item) {
+    public AbstractEntry(Node item, ServiceDocument root) {
         this.element = item;
+        this.root = root;
     }
 
     protected String getLink(String string) {

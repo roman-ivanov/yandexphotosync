@@ -14,75 +14,79 @@ import ua.pp.bizon.sunc.remote.impl.RemoteException;
 
 public class YandexPath implements Path {
 
-	private Entry path;
-	
-	public YandexPath(Entry i) {
-		this.path = i;
-	}
+    private Entry path;
 
-	@Override
-	public boolean isDirectory() {
-		return (path instanceof Collection);
-	}
+    public YandexPath(Entry i) {
+        this.path = i;
+    }
 
-	@Override
-	public List<Path> listDirectories() throws RemoteException {
-		LinkedList<Path> response = new LinkedList<Path>();
-		if (path instanceof Collection) {
-			for (Entry i : (Collection) path) {
-				response.add(new YandexPath(i));
-			}
-		}
-		return response;
-	}
-	
-	@Override
-	public List<Path> listFiles() throws RemoteException {
-	    LinkedList<Path> response = new LinkedList<Path>();
+    @Override
+    public boolean isDirectory() {
+        return (path instanceof Collection);
+    }
+
+    @Override
+    public List<Path> listDirectories() throws RemoteException {
+        LinkedList<Path> response = new LinkedList<Path>();
+        if (path instanceof Collection) {
+            for (Entry i : (Collection) path) {
+                response.add(new YandexPath(i));
+            }
+        }
+        return response;
+    }
+
+    @Override
+    public List<Path> listFiles() throws RemoteException {
+        LinkedList<Path> response = new LinkedList<Path>();
         if (path instanceof Album) {
             for (Entry i : ((Album) path).getPhotosIterable()) {
                 response.add(new YandexPath(i));
             }
         }
         return response;
-	}
+    }
 
-	@Override
-	public String getName() {
-		return path.getName();
-	}
+    @Override
+    public String getName() {
+        return path.getName();
+    }
 
-	@Override
-	public Path mkDirAndCD(String name) throws RemoteException {
-		if (path instanceof Collection) {
-			return new YandexPath(((Collection) path).getOrCreatePath(name));
-		} else
-			throw new RemoteException("path is not a directory: " + path);
-	}
+    @Override
+    public Path mkDirAndCD(String name) throws RemoteException {
+        if (path instanceof Collection) {
+            return new YandexPath(((Collection) path).getOrCreatePath(name));
+        } else
+            throw new RemoteException("path is not a directory: " + path);
+    }
 
-	@Override
-	public byte[] getData() throws FileNotFoundException, IOException {
-		if (path instanceof Photo) {
-			return ((Photo) path).getData();
-		} else
-			throw new IOException("can't read data from album");
-	}
+    @Override
+    public byte[] getData() throws FileNotFoundException, IOException {
+        if (path instanceof Photo) {
+            return ((Photo) path).getData();
+        } else
+            throw new IOException("can't read data from album");
+    }
 
-	@Override
-	public void uploadData(String name, byte[] data) throws IOException,
-			RemoteException {
-		if (path instanceof Album) {
-			((Album)path).createPhoto(name, data);
-		} else
-			throw new RemoteException("can't post photo data to photo");
-	}
-	
-	@Override
-	public boolean containsFile(String name) throws RemoteException {
-	    if (path instanceof Album) {
-            return ((Album)path).containsPhoto(name);
+    @Override
+    public void uploadData(String name, byte[] data) throws IOException, RemoteException {
+        if (path instanceof Album) {
+            ((Album) path).createPhoto(name, data);
         } else
             throw new RemoteException("can't post photo data to photo");
-    	}
+    }
+
+    @Override
+    public boolean containsFile(String name) throws RemoteException {
+        if (path instanceof Album) {
+            return ((Album) path).containsPhoto(name);
+        } else
+            throw new RemoteException("can't post photo data to photo");
+    }
+    
+    @Override
+    public String toString() {
+        return "yandex:" + path.getPath();
+    }
 
 }

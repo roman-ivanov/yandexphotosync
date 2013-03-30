@@ -1,219 +1,101 @@
- <feed xmlns="http://www.w3.org/2005/Atom" xmlns:app="http://www.w3.org/2007/app" xmlns:f="yandex:fotki">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:app="http://www.w3.org/2007/app" xmlns:f="yandex:fotki">
   <id>urn:yandex:fotki:test-sync:albums</id>
   <author>
     <name>test-sync</name>
     <f:uid>205099098</f:uid>
   </author>
   <title>test-sync на Яндекс.Фотках</title>
-  <updated>2013-03-25T16:54:12Z</updated>
+  <updated>2013-03-30T12:33:12Z</updated>
   <link href="http://api-fotki.yandex.ru/api/users/test-sync/albums/" rel="self" />
   <link href="http://fotki.yandex.ru/users/test-sync/albums/" rel="alternate" />
   <entry>
-    <id>urn:yandex:fotki:test-sync:album:346446</id>
+    <id>urn:yandex:fotki:test-sync:album:346501</id>
     <author>
       <name>test-sync</name>
       <f:uid>205099098</f:uid>
     </author>
-    <title>man.jpg</title>
-    <summary>man.jpg</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346446/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346446/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346446/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704550/" rel="cover" />
-    <f:img height="75" href="http://img-fotki.yandex.ru/get/4138/205099098.0/0_ac026_67536ee8_XXS" size="XXS" width="75" />
-    <f:img height="150" href="http://img-fotki.yandex.ru/get/4138/205099098.0/0_ac026_67536ee8_S" size="S" width="150" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346446/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346446/" rel="alternate" />
-    <published>2013-03-25T16:53:35Z</published>
-    <app:edited>2013-03-25T16:54:12Z</app:edited>
-    <updated>2013-03-25T16:54:12Z</updated>
+    <title>Неразобранное в test</title>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346501/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346501/" rel="edit" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346501/photos/" rel="photos" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/705463/" rel="cover" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/6439/205099098.0/0_ac3b7_fcc2ed8b_XXS" size="XXS" width="75" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/6439/205099098.0/0_ac3b7_fcc2ed8b_S" size="S" width="148" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346501/photos.ymapsml/" rel="ymapsml" />
+    <link href="http://fotki.yandex.ru/users/test-sync/album/346501/" rel="alternate" />
+    <published>2013-03-25T18:09:25Z</published>
+    <app:edited>2013-03-30T12:33:12Z</app:edited>
+    <updated>2013-03-30T12:33:12Z</updated>
     <f:protected value="false" />
-    <f:image-count value="1" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
+    <f:image-count value="22" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/" rel="album" />
   </entry>
   <entry>
-    <id>urn:yandex:fotki:test-sync:album:346445</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>D9o5GRxQ88M.jpg</title>
-    <summary>D9o5GRxQ88M.jpg</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346445/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346445/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346445/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704549/" rel="cover" />
-    <f:img height="75" href="http://img-fotki.yandex.ru/get/5642/205099098.0/0_ac025_4f181006_XXS" size="XXS" width="75" />
-    <f:img height="150" href="http://img-fotki.yandex.ru/get/5642/205099098.0/0_ac025_4f181006_S" size="S" width="148" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346445/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346445/" rel="alternate" />
-    <published>2013-03-25T16:53:34Z</published>
-    <app:edited>2013-03-25T16:54:12Z</app:edited>
-    <updated>2013-03-25T16:54:12Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="1" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346430</id>
+    <id>urn:yandex:fotki:test-sync:album:346497</id>
     <author>
       <name>test-sync</name>
       <f:uid>205099098</f:uid>
     </author>
     <title>test</title>
     <summary>test</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346430/" rel="alternate" />
-    <published>2013-03-25T16:29:49Z</published>
-    <app:edited>2013-03-25T16:54:12Z</app:edited>
-    <updated>2013-03-25T16:54:12Z</updated>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/" rel="edit" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/photos/" rel="photos" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/705461/" rel="cover" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/5629/205099098.0/0_ac3b5_87c86c9b_XXS" size="XXS" width="75" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/5629/205099098.0/0_ac3b5_87c86c9b_S" size="S" width="150" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/photos.ymapsml/" rel="ymapsml" />
+    <link href="http://fotki.yandex.ru/users/test-sync/album/346497/" rel="alternate" />
+    <published>2013-03-25T18:08:09Z</published>
+    <app:edited>2013-03-30T12:33:12Z</app:edited>
+    <updated>2013-03-30T12:33:12Z</updated>
     <f:protected value="false" />
     <f:image-count value="0" />
   </entry>
   <entry>
-    <id>urn:yandex:fotki:test-sync:album:346442</id>
+    <id>urn:yandex:fotki:test-sync:album:346500</id>
     <author>
       <name>test-sync</name>
       <f:uid>205099098</f:uid>
     </author>
-    <title>D9o5GRxQ88M.jpg</title>
-    <summary>D9o5GRxQ88M.jpg</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346442/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346442/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346442/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/704535/" rel="cover" />
-    <f:img height="75" href="http://img-fotki.yandex.ru/get/6701/205099098.0/0_ac017_1c680f8e_XXS" size="XXS" width="75" />
-    <f:img height="150" href="http://img-fotki.yandex.ru/get/6701/205099098.0/0_ac017_1c680f8e_S" size="S" width="148" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346442/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346442/" rel="alternate" />
-    <published>2013-03-25T16:52:10Z</published>
-    <app:edited>2013-03-25T16:52:57Z</app:edited>
-    <updated>2013-03-25T16:52:57Z</updated>
+    <title>2</title>
+    <summary>2</summary>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346500/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346500/" rel="edit" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346500/photos/" rel="photos" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/705462/" rel="cover" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/6443/205099098.0/0_ac3b6_74f1562f_XXS" size="XXS" width="75" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/6443/205099098.0/0_ac3b6_74f1562f_S" size="S" width="150" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346500/photos.ymapsml/" rel="ymapsml" />
+    <link href="http://fotki.yandex.ru/users/test-sync/album/346500/" rel="alternate" />
+    <published>2013-03-25T18:09:22Z</published>
+    <app:edited>2013-03-30T12:19:57Z</app:edited>
+    <updated>2013-03-30T12:19:57Z</updated>
     <f:protected value="false" />
-    <f:image-count value="1" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
+    <f:image-count value="11" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/" rel="album" />
   </entry>
   <entry>
-    <id>urn:yandex:fotki:test-sync:album:346441</id>
+    <id>urn:yandex:fotki:test-sync:album:346498</id>
     <author>
       <name>test-sync</name>
       <f:uid>205099098</f:uid>
     </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346441/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346441/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346441/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346441/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346441/" rel="alternate" />
-    <published>2013-03-25T16:45:46Z</published>
-    <app:edited>2013-03-25T16:46:27Z</app:edited>
-    <updated>2013-03-25T16:46:27Z</updated>
+    <title>1</title>
+    <summary>1</summary>
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346498/" rel="self" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346498/" rel="edit" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346498/photos/" rel="photos" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/photo/705461/" rel="cover" />
+    <f:img height="75" href="http://img-fotki.yandex.ru/get/5629/205099098.0/0_ac3b5_87c86c9b_XXS" size="XXS" width="75" />
+    <f:img height="150" href="http://img-fotki.yandex.ru/get/5629/205099098.0/0_ac3b5_87c86c9b_S" size="S" width="150" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346498/photos.ymapsml/" rel="ymapsml" />
+    <link href="http://fotki.yandex.ru/users/test-sync/album/346498/" rel="alternate" />
+    <published>2013-03-25T18:08:09Z</published>
+    <app:edited>2013-03-30T12:19:57Z</app:edited>
+    <updated>2013-03-30T12:19:57Z</updated>
     <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346440</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346440/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346440/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346440/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346440/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346440/" rel="alternate" />
-    <published>2013-03-25T16:45:34Z</published>
-    <app:edited>2013-03-25T16:46:12Z</app:edited>
-    <updated>2013-03-25T16:46:12Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346439</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346439/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346439/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346439/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346439/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346439/" rel="alternate" />
-    <published>2013-03-25T16:45:15Z</published>
-    <app:edited>2013-03-25T16:45:57Z</app:edited>
-    <updated>2013-03-25T16:45:57Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346435</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346435/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346435/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346435/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346435/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346435/" rel="alternate" />
-    <published>2013-03-25T16:40:28Z</published>
-    <app:edited>2013-03-25T16:41:12Z</app:edited>
-    <updated>2013-03-25T16:41:12Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346432</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346432/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346432/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346432/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346432/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346432/" rel="alternate" />
-    <published>2013-03-25T16:34:28Z</published>
-    <app:edited>2013-03-25T16:35:12Z</app:edited>
-    <updated>2013-03-25T16:35:12Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
-  </entry>
-  <entry>
-    <id>urn:yandex:fotki:test-sync:album:346431</id>
-    <author>
-      <name>test-sync</name>
-      <f:uid>205099098</f:uid>
-    </author>
-    <title>.DS_Store</title>
-    <summary>.DS_Store</summary>
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346431/" rel="self" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346431/" rel="edit" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346431/photos/" rel="photos" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346431/photos.ymapsml/" rel="ymapsml" />
-    <link href="http://fotki.yandex.ru/users/test-sync/album/346431/" rel="alternate" />
-    <published>2013-03-25T16:29:49Z</published>
-    <app:edited>2013-03-25T16:30:27Z</app:edited>
-    <updated>2013-03-25T16:30:27Z</updated>
-    <f:protected value="false" />
-    <f:image-count value="0" />
-    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346430/" rel="album" />
+    <f:image-count value="11" />
+    <link href="http://api-fotki.yandex.ru/api/users/test-sync/album/346497/" rel="album" />
   </entry>
 </feed>
