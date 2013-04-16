@@ -23,6 +23,15 @@ public class StoreImplTest {
     
     @Test
     public void testStoreImplGetSet() {
+        Store store = createTempStore();
+        assertNull(store.get("test"));
+        assertEquals("1", store.get("test", "1"));
+        assertNull(store.put("test", "1"));
+        assertEquals("1", store.get("test"));
+        assertEquals("1", store.get("test", "2"));
+    }
+
+    public static Store createTempStore() {
         String filename = null;
         try {
              filename = File.createTempFile("yandexphotosync.temp.", ".properties", new File("/tmp")).getAbsolutePath();
@@ -30,11 +39,7 @@ public class StoreImplTest {
             fail(e.getMessage());
         }
         Store store = new StoreImpl(filename);
-        assertNull(store.get("test"));
-        assertEquals("1", store.get("test", "1"));
-        assertNull(store.put("test", "1"));
-        assertEquals("1", store.get("test"));
-        assertEquals("1", store.get("test", "2"));
+        return store;
     }
     
 }

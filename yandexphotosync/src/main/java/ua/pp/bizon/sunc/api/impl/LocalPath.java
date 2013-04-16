@@ -17,9 +17,15 @@ import ua.pp.bizon.sunc.remote.impl.RemoteException;
 public class LocalPath implements Path {
 
     private File path;
+    
+    
+    @Override
+    public Path getParent() {
+        return new LocalPath(path.getParentFile());
+    }
 
-    public File getPath() {
-        return path;
+    public String getPath() {
+        return "file:" + path.getPath();
     }
 
     public LocalPath(String substring) {

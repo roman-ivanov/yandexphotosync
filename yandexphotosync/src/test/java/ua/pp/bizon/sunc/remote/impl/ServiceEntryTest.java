@@ -1,15 +1,14 @@
 package ua.pp.bizon.sunc.remote.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import ua.pp.bizon.sunc.remote.Album;

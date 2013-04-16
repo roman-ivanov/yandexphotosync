@@ -71,7 +71,7 @@ public abstract class AbstractEntry implements Entry {
 
     @Override
     public String getPath() {
-        return (parent == null ? "yandex:" : parent.getPath()) + "/" + getName();
+        return (parent == null ? "" : parent.getPath()) + "/" + getName();
     }
 
     @Override
@@ -94,6 +94,16 @@ public abstract class AbstractEntry implements Entry {
     @Override
     public String toString() {
         return "parentUrl= " + getParentUrl() + ", url=" + getUrl() + ", path=" + getPath();
+    }
+
+    @Override
+    public void setEnclosingEntry(Entry enclosingEntry) {
+        parent = enclosingEntry;
+    }
+
+    @Override
+    public Entry getEnclosingEntry() {
+        return parent;
     }
 
 }

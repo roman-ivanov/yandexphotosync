@@ -12,7 +12,7 @@ final class ServiceEntryTestImpl extends ServiceEntry {
     private static final byte[] buf_me;
     private static final byte[] buf_albums;
     private static final byte[] buf_photos;
-    
+
     static {
         byte[] res = null, me = null, photos = null;
         try {
@@ -39,8 +39,8 @@ final class ServiceEntryTestImpl extends ServiceEntry {
         }
         if (uri.equals("http://api-fotki.yandex.ru/api/users/test-sync/photos/")) {
             return new ByteArrayInputStream(buf_photos);
-        } else
-            fail(uri);
-        return null;
+        }
+        fail(uri);
+        throw new RuntimeException();
     }
 }

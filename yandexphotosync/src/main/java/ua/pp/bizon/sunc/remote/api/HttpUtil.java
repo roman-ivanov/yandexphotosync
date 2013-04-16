@@ -5,6 +5,8 @@ import java.io.InputStream;
 
 import org.apache.commons.httpclient.HttpException;
 
+import ua.pp.bizon.sunc.remote.impl.RemoteException;
+
 
 public interface HttpUtil {
 
@@ -18,5 +20,7 @@ public interface HttpUtil {
 
     public abstract InputStream postData(String url, String name, byte[] data, String id) throws HttpException,
             IOException;
+
+    public abstract String postRawEntity(String url, String postData, String encode) throws IOException, RemoteException;
 
 }

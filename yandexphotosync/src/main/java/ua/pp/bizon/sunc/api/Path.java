@@ -24,4 +24,8 @@ public interface Path {
 
     List<Path> listFiles() throws RemoteException;
 
+    String getPath();
+
+    Path getParent();
+
 }

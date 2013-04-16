@@ -16,4 +16,8 @@ public interface Entry {
 
     Entry getParent();
 
+    public abstract Entry getEnclosingEntry();
+
+    public abstract void setEnclosingEntry(Entry enclosingEntry);
+
 }

@@ -17,5 +17,9 @@ public interface Collection extends Iterable<Entry>{
     void addAll(Collection entries);
 
     public abstract boolean isEmpty();
+
+    public abstract void setEnclosingEntry(Entry enclosingEntry);
+
+    public abstract Entry getEnclosingEntry();
 	
 }

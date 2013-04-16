@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Loader {
 
-    private static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+    static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
     static {
         context.scan("ua.pp.bizon.sunc.api.impl");

@@ -13,11 +13,18 @@ public class PhotoImpl extends AbstractEntry implements Entry, Photo {
 
     @Override
     public byte[] getData() {
-        return null;
+        return null; // TODO add load file
     }
 
     @Override
     public String toString() {
         return "PhotoImpl[" + super.toString() + "]";
+    }
+
+    public Entry getEnclosingEntry() {
+        return null;
+    }
+
+    public void setEnclosingEntry(Entry enclosingEntry) {
     }
 }

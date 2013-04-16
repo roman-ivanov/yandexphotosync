@@ -1,15 +1,14 @@
 package ua.pp.bizon.sunc.remote.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;

@@ -19,12 +19,12 @@ import ua.pp.bizon.sunc.remote.Photo;
 
 public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection {
 
-    private CollectionImpl albums = new CollectionImpl(root);
+    private Collection albums = new CollectionImpl(root);
     private Collection photos = new CollectionImpl(root);
 
     public AlbumImpl(Node item, ServiceDocument root) {
         super(item, root);
-        albums.setElement(this);
+        albums.setEnclosingEntry(this);
     }
 
     public String toStringLog() {
@@ -129,5 +129,12 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     public boolean isEmpty() {
         return false;
+    }
+
+    public Entry getEnclosingEntry() {
+        return null;
+    }
+
+    public void setEnclosingEntry(Entry enclosingEntry) {
     }
 }

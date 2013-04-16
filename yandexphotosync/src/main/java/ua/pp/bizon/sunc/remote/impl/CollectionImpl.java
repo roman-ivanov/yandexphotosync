@@ -19,8 +19,8 @@ public class  CollectionImpl implements Collection {
     private Map<String, Entry> mapByName = new HashMap<String, Entry>();
     private Logger logger = LoggerFactory.getLogger(getClass());
     protected List<Entry> unsortedMapByUrl = new LinkedList<Entry>();
-    private Album element;
     private final ServiceDocument root;
+    private Entry enclosingEntry;
     
     public CollectionImpl(ServiceDocument root) {
         this.root = root;
@@ -37,7 +37,10 @@ public class  CollectionImpl implements Collection {
                 e.setParent(parentEntry);
             } else {
                 unsortedMapByUrl.add(e);
+                e.setParent(enclosingEntry);
             }
+        } else {
+            e.setParent(enclosingEntry);
         }
         for (Iterator<Entry> i = unsortedMapByUrl.iterator(); i.hasNext();) {
             Entry ie = i.next();
@@ -102,6 +105,8 @@ public class  CollectionImpl implements Collection {
         if (path.startsWith("/")){
             path = path.substring(1);
         }
+        if (path.isEmpty())
+            return enclosingEntry;
         String splittedPath[] = path.split("/", 2);
         String name = splittedPath[0];
         String subPath = splittedPath.length > 1 ? splittedPath[1] : null;
@@ -118,8 +123,8 @@ public class  CollectionImpl implements Collection {
 
     @Override
     public Entry createAlbum(String name) throws RemoteException {
-       if (element != null){
-           return addEntry(element.createAlbum(name));
+       if (enclosingEntry != null && enclosingEntry instanceof Album){
+           return addEntry(((Album)enclosingEntry).createAlbum(name));
        }else {
            return addEntry(root.createAlbum(name, null));
        }
@@ -143,14 +148,14 @@ public class  CollectionImpl implements Collection {
         }
     }
 
-    public Album getElement() {
-        return element;
+    @Override
+    public Entry getEnclosingEntry() {
+        return enclosingEntry;
     }
-
-    public void setElement(Album element) {
-        this.element = element;
+    @Override
+    public void setEnclosingEntry(Entry enclosingEntry) {
+        this.enclosingEntry = enclosingEntry;
     }
-
 
     @Override
     public boolean isEmpty() {

@@ -19,6 +19,11 @@ public class YandexPath implements Path {
     public YandexPath(Entry i) {
         this.path = i;
     }
+    
+    @Override
+    public Path getParent() {
+        return new YandexPath(path.getParent());
+    }
 
     @Override
     public boolean isDirectory() {
@@ -87,6 +92,11 @@ public class YandexPath implements Path {
     @Override
     public String toString() {
         return "yandex:" + path.getPath();
+    }
+    
+    @Override
+    public String getPath() {
+        return toString();
     }
 
 }

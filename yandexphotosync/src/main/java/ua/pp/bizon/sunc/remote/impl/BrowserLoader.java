@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 public class BrowserLoader {
 
     public static void openUrl(String url) {
+        LoggerFactory.getLogger(BrowserLoader.class).trace("open url:" + url);
         try {
             String osName = System.getProperty("os.name", "");
             if (osName.startsWith("Mac OS")) {

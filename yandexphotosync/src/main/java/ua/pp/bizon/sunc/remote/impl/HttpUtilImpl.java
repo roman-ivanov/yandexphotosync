@@ -52,7 +52,7 @@ public class HttpUtilImpl implements HttpUtil {
     public InputStream getStream(String url) throws HttpException, IOException {
 		HttpClient client = new HttpClient();
 		GetMethod method = new GetMethod(url);
-		logger.trace("request: " + url);
+		logger.trace("getStream: url=" + url);
 		method.addRequestHeader("Authorization",  "OAuth " + auth.getToken());
 		int response = client.executeMethod(method);
 		logger.trace("response code: " + response);
@@ -73,12 +73,12 @@ public class HttpUtilImpl implements HttpUtil {
         logger.trace("reqest post data: " + data);
         int response = client.executeMethod(method);
         if (response > 201){
-            logger.debug("request url: " + url);
-            logger.debug("reqest post data: " + data);
-            logger.debug("response status text : " + method.getStatusText());
-            logger.debug("response headers : " + Arrays.asList(method.getRequestHeaders()));
-            logger.debug("response code: " + response);
-            logger.debug("response stream: " + method.getResponseBodyAsString());
+            logger.warn("postEntry: url=" + url);
+            logger.warn("reqest post data: " + data);
+            logger.warn("response status text : " + method.getStatusText());
+            logger.warn("response headers : " + Arrays.asList(method.getRequestHeaders()));
+            logger.warn("response code: " + response);
+            logger.warn("response stream: " + method.getResponseBodyAsString());
                 }
         logger.trace("response code: " + response);
         logger.trace("response stream: " + method.getResponseBodyAsString());
@@ -100,36 +100,37 @@ public class HttpUtilImpl implements HttpUtil {
         HttpMethodParams params = new HttpMethodParams();
         method.setRequestEntity(new MultipartRequestEntity(parts, params));
         method.addRequestHeader("Authorization",  "OAuth " + auth.getToken());
-        logger.trace("request url: " + url);
+        logger.trace("post data: url=" + url);
         logger.trace("reqest post data: " + method.getRequestEntity());
         int response = client.executeMethod(method);
         if (response > 201){
-            logger.debug("request url: " + url);
-            logger.debug("reqest post data length: " + data.length);
-            logger.debug("response status text : " + method.getStatusText());
-            logger.debug("response headers : " + Arrays.asList(method.getRequestHeaders()));
-            logger.debug("response code: " + response);
-            logger.debug("response stream: " + method.getResponseBodyAsString());
+            logger.warn("request url: " + url);
+            logger.warn("reqest post data length: " + data.length);
+            logger.warn("response status text : " + method.getStatusText());
+            logger.warn("response headers : " + Arrays.asList(method.getRequestHeaders()));
+            logger.warn("response code: " + response);
+            logger.warn("response stream: " + method.getResponseBodyAsString());
                 }
         logger.trace("response code: " + response);
         logger.trace("response stream: " + method.getResponseBodyAsString());
         return method.getResponseBodyAsStream();
     }
 
-    public String postRawEntity(String url, String postData, String encode) throws IOException {
+    public String postRawEntity(String url, String postData, String encode) throws IOException, RemoteException {
+        logger.trace("postRawEntity: url=" + url);
         HttpClient client = new HttpClient();
         PostMethod method = new PostMethod(url);
         method.setRequestEntity(new StringRequestEntity(postData, encode, null));
-        logger.trace("request url: " + url);
         logger.trace("reqest post data: " + method.getRequestEntity());
         int response = client.executeMethod(method);
         if (response > 201){
-            logger.debug("request url: " + url);
-            logger.debug("response status text : " + method.getStatusText());
-            logger.debug("response headers : " + Arrays.asList(method.getRequestHeaders()));
-            logger.debug("response code: " + response);
-            logger.debug("response stream: " + method.getResponseBodyAsString());
-                }
+            logger.warn("request url: " + url);
+            logger.warn("response status text : " + method.getStatusText());
+            logger.warn("response headers : " + Arrays.asList(method.getRequestHeaders()));
+            logger.warn("response code: " + response);
+            logger.warn("response stream: " + method.getResponseBodyAsString());
+            throw new RemoteException(method.getStatusText() + "\n\n" + method.getResponseBodyAsString());
+        }
         logger.trace("response code: " + response);
         logger.trace("response stream: " + method.getResponseBodyAsString());
         return method.getResponseBodyAsString();

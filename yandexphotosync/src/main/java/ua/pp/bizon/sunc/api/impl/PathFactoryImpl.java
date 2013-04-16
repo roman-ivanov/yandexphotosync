@@ -17,10 +17,9 @@ public class PathFactoryImpl implements PathFactory {
     
     @Override
     public Path create(String string) throws PathNotSupportedException {
-        root.init();
         if (string.startsWith("yandex:"))
             try {
-                return new YandexPath(root.getAlbums().getOrCreatePath(string.substring(7)));
+                return new YandexPath(root.getEntries().getOrCreatePath(string.substring(7)));
             } catch (RemoteException e) {
                throw new PathNotSupportedException(e.getMessage(), e);
             }
@@ -29,5 +28,4 @@ public class PathFactoryImpl implements PathFactory {
         else 
             throw new PathNotSupportedException();
     }
-
 }

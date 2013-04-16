@@ -43,6 +43,7 @@ public class ServiceEntry {
         albums = getCollectionPath("album-list");
         photos = getCollectionPath("photo-list");
         collection = new CollectionImpl(root);
+        collection.setEnclosingEntry(new RootEntry(collection));
         collection.addAll(getEntries(getStream(albums)));
         collection.addAll(getEntries(getStream(photos)));
     }
@@ -51,9 +52,15 @@ public class ServiceEntry {
         return httpUtil.getStream(uri);
     }
 
-    public Collection getEntries() throws SAXException, IOException, ParserConfigurationException, RemoteException {
+    public Collection getEntries() throws RemoteException {
         if (collection == null) {
-            load();
+            try {
+                load();
+            } catch (RemoteException e) {
+                throw e;
+            } catch (Exception e) {
+               throw new RemoteException(e.getMessage(), e); 
+            } 
         }
         return collection;
     }

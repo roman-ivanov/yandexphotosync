@@ -7,12 +7,16 @@ import ua.pp.bizon.sunc.remote.api.OAuthUI;
 
 public class OAuthImpl implements OAuth {
     
+
+    
     
     private String token;
     @Autowired
     private OAuthUI authUI;
     
-    void setAuthUI(OAuthUI authUI) {
+    @Override
+    public void setAuthUI(OAuthUI authUI) {
+        this.token = null;
         this.authUI = authUI;
     }
     

@@ -17,7 +17,7 @@ public class OAuthTest {
 	@Test
 	public void test() throws HttpException, IOException {
 	    final AtomicInteger integer = new AtomicInteger(0);
-		OAuthImpl oAuthImpl = new OAuthImpl();
+		OAuth oAuthImpl = new OAuthImpl();
 		oAuthImpl.setAuthUI(new OAuthUI() {
             
             @Override
