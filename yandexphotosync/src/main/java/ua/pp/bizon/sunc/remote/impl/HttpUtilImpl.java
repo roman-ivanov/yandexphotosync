@@ -56,7 +56,7 @@ public class HttpUtilImpl implements HttpUtil {
 		method.addRequestHeader("Authorization",  "OAuth " + auth.getToken());
 		int response = client.executeMethod(method);
 		logger.trace("response code: " + response);
-		logger.trace("response stream: " + method.getResponseBodyAsString());
+		//logger.trace("response stream: " + method.getResponseBodyAsString());
 		return method.getResponseBodyAsStream();
 	}
 

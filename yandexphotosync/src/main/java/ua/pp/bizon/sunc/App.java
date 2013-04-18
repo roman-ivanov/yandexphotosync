@@ -18,10 +18,14 @@ public class App {
     }
     
     public static void main(String[] args) throws Exception {
+        if (args.length < 2){
+            System.out.println("usage: App from to");
+            System.exit(1);
+        } 
         try {
             PathFactory factory = context.getBean(PathFactory.class);
-            new Sync().sync(factory.create("file:/Users/roman/Pictures/test"),
-                    factory.create("yandex:/test"));
+            new Sync().sync(
+                    factory.create(args[0]), factory.create(args[1]));
         } finally {
             context.close();
         }

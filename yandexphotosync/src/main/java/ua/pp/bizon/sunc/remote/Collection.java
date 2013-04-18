@@ -1,5 +1,7 @@
 package ua.pp.bizon.sunc.remote;
 
+import java.util.List;
+
 import ua.pp.bizon.sunc.remote.impl.RemoteException;
 
 public interface Collection extends Iterable<Entry>{
@@ -11,15 +13,11 @@ public interface Collection extends Iterable<Entry>{
 	Entry findEntryByName(String path);
 
 	Entry createAlbum(String name) throws RemoteException;
-
-    Entry getOrCreatePath(String path) throws RemoteException;
-
-    void addAll(Collection entries);
+    
+    void addAll(List<Entry> entries);
 
     public abstract boolean isEmpty();
 
-    public abstract void setEnclosingEntry(Entry enclosingEntry);
-
-    public abstract Entry getEnclosingEntry();
+    List<Entry> listDirectories();
 	
 }

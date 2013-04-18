@@ -3,7 +3,6 @@ package ua.pp.bizon.sunc.remote.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ua.pp.bizon.sunc.remote.Album;
-import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Photo;
 
 public class ServiceDocument {
@@ -11,12 +10,12 @@ public class ServiceDocument {
     @Autowired
     private ServiceEntry entry;
 
-    private ServiceEntry getServiceEntry() throws RemoteException {
+    protected ServiceEntry getServiceEntry() throws RemoteException {
         return entry;
     }
     
-    public Collection getEntries() throws RemoteException {
-        return getServiceEntry().getEntries();
+    public RootEntry getRoot() throws RemoteException {
+        return getServiceEntry().getRootEntry();
     }
     
     void setEntry(ServiceEntry entry) {

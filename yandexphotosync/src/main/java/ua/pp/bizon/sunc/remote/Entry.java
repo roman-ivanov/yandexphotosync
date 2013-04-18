@@ -6,8 +6,6 @@ public interface Entry {
 
 	String getParentUrl();
 
-	void setParent(Entry entry);
-
 	String getPath();
 
 	String getName();
@@ -16,8 +14,6 @@ public interface Entry {
 
     Entry getParent();
 
-    public abstract Entry getEnclosingEntry();
-
-    public abstract void setEnclosingEntry(Entry enclosingEntry);
+    void setParent(Entry e);
 
 }

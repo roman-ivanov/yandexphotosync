@@ -20,6 +20,18 @@ public abstract class AbstractEntry implements Entry {
         this.root = root;
     }
 
+    
+    protected String getImageLink(String string) {
+        NodeList list = element.getChildNodes();
+        for (int i = 0; i < list.getLength(); i++) {
+            if (list.item(i).getNodeName().equals("f:img")) {
+                if ((list.item(i).getAttributes().getNamedItem("size").getNodeValue().equals(string))) {
+                    return list.item(i).getAttributes().getNamedItem("href").getNodeValue();
+                }
+            }
+        }
+        return null;    }
+    
     protected String getLink(String string) {
         NodeList list = element.getChildNodes();
         for (int i = 0; i < list.getLength(); i++) {
@@ -58,10 +70,10 @@ public abstract class AbstractEntry implements Entry {
         }
         return id;
     }
-
+    
     @Override
-    public void setParent(Entry entry) {
-        this.parent = entry;
+    public void setParent(Entry e) {
+        this.parent = e;
     }
 
     @Override
@@ -94,16 +106,6 @@ public abstract class AbstractEntry implements Entry {
     @Override
     public String toString() {
         return "parentUrl= " + getParentUrl() + ", url=" + getUrl() + ", path=" + getPath();
-    }
-
-    @Override
-    public void setEnclosingEntry(Entry enclosingEntry) {
-        parent = enclosingEntry;
-    }
-
-    @Override
-    public Entry getEnclosingEntry() {
-        return parent;
     }
 
 }

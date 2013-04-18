@@ -10,8 +10,8 @@ public class ServiceDocumentTest {
     public void testListFiles() throws RemoteException {
         ServiceDocument serviceDocument = new ServiceDocument();
         serviceDocument.setEntry(new ServiceEntryTestImpl());
-        assertNotNull(serviceDocument.getEntries());
-        System.out.println(serviceDocument.getEntries());
+        assertNotNull(serviceDocument.getRoot());
+        System.out.println(serviceDocument.getRoot());
     }
 
 

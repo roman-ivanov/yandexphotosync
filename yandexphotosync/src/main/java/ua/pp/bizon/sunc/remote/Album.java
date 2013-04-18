@@ -1,5 +1,7 @@
 package ua.pp.bizon.sunc.remote;
 
+import java.util.List;
+
 import ua.pp.bizon.sunc.remote.impl.RemoteException;
 
 public interface Album extends Collection, Entry {
@@ -10,6 +12,6 @@ public interface Album extends Collection, Entry {
 
     boolean containsPhoto(String name);
 
-    Iterable<Entry> getPhotosIterable();
+    List<Entry> listPhotos();
 
 }

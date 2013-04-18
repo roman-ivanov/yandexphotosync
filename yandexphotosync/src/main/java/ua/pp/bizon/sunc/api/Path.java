@@ -14,9 +14,7 @@ public interface Path {
 
     String getName();
 
-    Path mkDirAndCD(String name) throws RemoteException;
-
-    byte[] getData() throws FileNotFoundException, IOException;
+    byte[] getData() throws FileNotFoundException, IOException, RemoteException;
 
     void uploadData(String name, byte[] data) throws FileNotFoundException, IOException, RemoteException;
 
@@ -27,5 +25,11 @@ public interface Path {
     String getPath();
 
     Path getParent();
+
+    boolean containsFolder(String name);
+
+    Path getChildren(String name) throws RemoteException;
+
+    void mkdir(String name) throws RemoteException;
 
 }

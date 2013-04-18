@@ -1,5 +1,8 @@
 package ua.pp.bizon.sunc.remote.impl;
 
+import java.io.IOException;
+
+import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Node;
 
 import ua.pp.bizon.sunc.remote.Entry;
@@ -12,19 +15,16 @@ public class PhotoImpl extends AbstractEntry implements Entry, Photo {
 	}
 
     @Override
-    public byte[] getData() {
-        return null; // TODO add load file
+    public byte[] getData() throws RemoteException {
+        try {
+            return IOUtils.toByteArray(root.getServiceEntry().getData(getImageLink("orig")));
+        } catch ( IOException e) {
+           throw new RemoteException(e.getMessage(), e);
+        }
     }
 
     @Override
     public String toString() {
         return "PhotoImpl[" + super.toString() + "]";
-    }
-
-    public Entry getEnclosingEntry() {
-        return null;
-    }
-
-    public void setEnclosingEntry(Entry enclosingEntry) {
     }
 }

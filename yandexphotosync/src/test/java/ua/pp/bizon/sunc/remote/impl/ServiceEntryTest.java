@@ -1,57 +1,36 @@
 package ua.pp.bizon.sunc.remote.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import ua.pp.bizon.sunc.remote.Album;
-import ua.pp.bizon.sunc.remote.Collection;
-import ua.pp.bizon.sunc.remote.Entry;
 
 public class ServiceEntryTest {
 
-    @Test
-    public void testGetCollectionPath() throws SAXException, IOException, ParserConfigurationException, RemoteException {
-        ServiceEntry entry = new ServiceEntryTestImpl();
-        CollectionImpl collection = (CollectionImpl) entry.getEntries();
-        assertNotNull(collection);
-
-        assertEquals("should be empty: " + collection.unsortedMapByUrl, 0, collection.unsortedMapByUrl.size());
-        for (Entry e : collection) {
-            if (e.getParentUrl() != null) {
-                Entry x = null;
-                for (Entry p : (Collection) e.getParent()) {
-                    if (p.equals(e)) {
-                        x = p;
-                        break;
-                    }
-                }
-                if (x == null && e.getParent() instanceof Album)
-                for (Entry p : ((Album) e.getParent()).getPhotosIterable()) {
-                    if (p.equals(e)) {
-                        x = p;
-                        break;
-                    }
-                }
-                assertNotNull("parent should contain element " + e, x);
-            }
-        }
-        collection = (CollectionImpl) entry.getEntries();
-    }
+    private ServiceEntry entry = new ServiceEntryTestImpl();
 
     @Test
-    public void testChekcSync() throws Exception {
-        Collection impl = (Collection) new ServiceEntryTestImpl().getEntries();
-        Entry e = impl.findEntryByUrl("http://api-fotki.yandex.ru/api/users/test-sync/photo/716468/");
-        System.out.println(e.getParent());
-        assertTrue(((Album) e.getParent()).containsPhoto(e.getName()));
+    public void testLoader() throws RemoteException {
+        RootEntry entry = this.entry.getRootEntry();
+        assertNotNull(entry.dao.getAllEntries());
+        assertEquals(1, entry.dao.getAllEntries().size());
+        Album test = (Album) entry.dao.getAllEntries().get(0);
+        assertEquals("test", test.getName());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/album/348161/", test.getUrl());
+        assertEquals(2, test.listDirectories().size());
+        assertEquals(2, test.listPhotos().size());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/photo/716471/",test.listPhotos().get(0).getUrl());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/photo/716470/",test.listPhotos().get(1).getUrl());
+        Album t_1 = (Album) test.listDirectories().get(0);
+        Album t_2 = (Album) test.listDirectories().get(1);
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/album/348163/", t_1.getUrl());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/album/348162/", t_2.getUrl());
+        assertEquals(1, t_1.listPhotos().size());
+        assertEquals(1, t_2.listPhotos().size());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/photo/716469/",t_1.listPhotos().get(0).getUrl());
+        assertEquals("http://api-fotki.yandex.ru/api/users/test-sync/photo/716468/",t_2.listPhotos().get(0).getUrl());
     }
+
 
 }

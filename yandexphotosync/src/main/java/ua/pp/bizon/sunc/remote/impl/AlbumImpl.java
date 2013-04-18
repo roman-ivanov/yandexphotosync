@@ -2,6 +2,8 @@ package ua.pp.bizon.sunc.remote.impl;
 
 import java.io.StringWriter;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -9,6 +11,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 
@@ -16,15 +19,16 @@ import ua.pp.bizon.sunc.remote.Album;
 import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
 import ua.pp.bizon.sunc.remote.Photo;
+import ua.pp.bizon.sunc.remote.api.EntryDAO;
 
 public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection {
 
-    private Collection albums = new CollectionImpl(root);
-    private Collection photos = new CollectionImpl(root);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private EntryDAO entryDAO = new EntryDAOImpl();
+    private Album photosUnsorted = null;
 
     public AlbumImpl(Node item, ServiceDocument root) {
         super(item, root);
-        albums.setEnclosingEntry(this);
     }
 
     public String toStringLog() {
@@ -46,27 +50,42 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
     }
 
     @Override
-    public String toString() {
-        return "AlbumImpl [albums=" + albums + ", photos=" + photos + ", " + super.toString() + "]";
-    }
-
-    @Override
     public Entry findEntryByName(String path) {
-        return albums.isEmpty() ? photos.findEntryByName(path) : albums.findEntryByName(path);
+        Entry res = entryDAO.findEntryByName(path);
+        if (res == null && photosUnsorted != null){
+            res = photosUnsorted.findEntryByName(path);
+        }
+        return res;
     }
 
     @Override
     public Entry findEntryByUrl(String url) {
-        return albums.isEmpty() ?photos.findEntryByUrl(url) : albums.findEntryByUrl(url);
+        Entry res = entryDAO.findEntryByUrl(url);
+        if (res == null && photosUnsorted != null){
+            res = photosUnsorted.getUrl().equals(url) ? photosUnsorted : photosUnsorted.findEntryByUrl(url);
+        }
+        return res;    
     }
 
     @Override
     public Iterator<Entry> iterator() {
-        return albums.iterator();
+        return photosUnsorted == null ? entryDAO.getAllEntries().iterator() : split(photosUnsorted.listPhotos(), entryDAO.getAllEntries()).iterator();
+    }
+
+    private List<Entry> split(List<Entry> listPhotos, List<Entry> allEntries) {
+        List<Entry> result = new LinkedList<Entry>();
+        result.addAll(listPhotos);
+        result.addAll(allEntries);
+        return result;
     }
 
     @Override
-    public void addAll(Collection entries) {
+    public List<Entry> listDirectories() {
+        return entryDAO.listDirectories();
+    }
+
+    @Override
+    public void addAll(List<Entry> entries) {
         for (Entry e : entries) {
             addEntry(e);
         }
@@ -79,7 +98,7 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     @Override
     public boolean containsPhoto(String name) {
-        return photos.findEntryByName(name) != null;
+        return photosUnsorted == null ? entryDAO.findEntryByName(name) != null && entryDAO.findEntryByName(name) instanceof Photo : photosUnsorted.containsPhoto(name);
     }
 
     @Override
@@ -96,20 +115,15 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
 
     @Override
     public Entry addEntry(Entry e) {
-        if (e instanceof Photo) {
-            return photos.addEntry(e);
+        if (e.getName().equals("Неразобранное в " + getName()) && e instanceof Album) {
+            photosUnsorted = (Album) e;
+            logger.debug("found unsorted");
+            return e;
         } else {
-            if (e.getName().equals("Неразобранное в " + getName()) && e instanceof Collection){
-                photos = (Collection) e;
-                LoggerFactory.getLogger(getClass()).debug("found unsorted");
-            }
-            return albums.addEntry(e);
-        }
-    }
+            e.setParent(this);
+            return entryDAO.save(e);
 
-    @Override
-    public Entry getOrCreatePath(String path) throws RemoteException {
-        return albums.getOrCreatePath(path);
+        }
     }
 
     public static String createNewEntry(String name, String url) {
@@ -123,18 +137,18 @@ public class AlbumImpl extends AbstractEntry implements Entry, Album, Collection
     }
 
     @Override
-    public Iterable<Entry> getPhotosIterable() {
-        return photos;
+    public List<Entry> listPhotos() {
+        return photosUnsorted == null ? entryDAO.listPhotos() : photosUnsorted.listPhotos();
     }
 
     public boolean isEmpty() {
-        return false;
+        return entryDAO.isEmpty() || (photosUnsorted != null && photosUnsorted.isEmpty());
     }
 
-    public Entry getEnclosingEntry() {
-        return null;
+    @Override
+    public String toString() {
+        return "AlbumImpl [name=" + getName() + ", path=" + getPath() +  ",entryDAO=" + entryDAO + ", photosUnsorted=" + photosUnsorted + "]";
     }
-
-    public void setEnclosingEntry(Entry enclosingEntry) {
-    }
+    
+    
 }

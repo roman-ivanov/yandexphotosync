@@ -2,11 +2,14 @@ package ua.pp.bizon.sunc.remote.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.httpclient.HttpException;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
@@ -15,7 +18,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ua.pp.bizon.sunc.remote.Album;
-import ua.pp.bizon.sunc.remote.Collection;
 import ua.pp.bizon.sunc.remote.Entry;
 import ua.pp.bizon.sunc.remote.Photo;
 import ua.pp.bizon.sunc.remote.api.HttpUtil;
@@ -35,34 +37,38 @@ public class ServiceEntry {
     private String uri;
     @Autowired
     private ServiceDocument root;
-    private Collection collection;
+    
+    private RootEntry rootEntry;
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
 
     void load() throws SAXException, IOException, ParserConfigurationException, RemoteException {
         InputStream xml = getStream(uri);
         xmlDoc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(xml);
         albums = getCollectionPath("album-list");
         photos = getCollectionPath("photo-list");
-        collection = new CollectionImpl(root);
-        collection.setEnclosingEntry(new RootEntry(collection));
-        collection.addAll(getEntries(getStream(albums)));
-        collection.addAll(getEntries(getStream(photos)));
+        rootEntry = new RootEntry(this);
+        rootEntry.addAll(parseEntries(getStream(albums)));
+        rootEntry.addAll(parseEntries(getStream(photos)));
     }
 
     protected InputStream getStream(String uri) throws HttpException, IOException {
         return httpUtil.getStream(uri);
     }
-
-    public Collection getEntries() throws RemoteException {
-        if (collection == null) {
+    
+    public RootEntry getRootEntry() throws RemoteException {
+        if (rootEntry == null) {
             try {
+                logger.trace("load started");
                 load();
+                logger.trace("load ended");
             } catch (RemoteException e) {
                 throw e;
             } catch (Exception e) {
                throw new RemoteException(e.getMessage(), e); 
             } 
         }
-        return collection;
+        return rootEntry;
     }
 
     public HttpUtil getHttpUtil() {
@@ -86,24 +92,26 @@ public class ServiceEntry {
                 return list.item(i).getAttributes().getNamedItem("href").getNodeValue();
             }
         }
-        LoggerFactory.getLogger(getClass()).error("collection not found in: " + xmlDoc);
+        logger.error("collection not found in: " + xmlDoc);
         return null;
     }
 
-    protected Collection getEntries(InputStream stream) throws SAXException, IOException, ParserConfigurationException,
+    protected List<Entry> parseEntries(InputStream stream) throws SAXException, IOException, ParserConfigurationException,
             RemoteException {
         Document xmlAlbums = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(stream);
         NodeList list = xmlAlbums.getElementsByTagName("entry");
-        Collection entries = new CollectionImpl(root);
+        logger.trace("parseEntries: found " + list.getLength() + " elements");
+        List<Entry> entries = new LinkedList<Entry>();
         for (int i = 0; i < list.getLength(); i++) {
-            entries.addEntry(parseEntry(list.item(i)));
+            entries.add(parseEntry(list.item(i)));
         }
         list = xmlAlbums.getDocumentElement().getChildNodes();
         for (int i = 0; i < list.getLength(); i++) {
             if (list.item(i).getNodeName().equals("link") && list.item(i).getAttributes().getNamedItem("rel") != null
                     && list.item(i).getAttributes().getNamedItem("rel").getNodeValue().equals("next")) {
                 String nextUrl = list.item(i).getAttributes().getNamedItem("href").getNodeValue();
-                entries.addAll(getEntries(getStream(nextUrl)));
+                logger.trace("parseEntries: found " + nextUrl + " url");
+                entries.addAll(parseEntries(getStream(nextUrl)));
             }
         }
         return entries;
@@ -121,8 +129,10 @@ public class ServiceEntry {
         if (id != null) {
             String[] ids = id.split(":");
             if (ids[4].equals("photo")) {
+                logger.trace("parseEntry: photo "+ id + " found");
                 return new PhotoImpl(item, root);
             } else if (ids[4].equals("album")) {
+                logger.trace("parseEntry: album "+ id + " found");
                 return new AlbumImpl(item, root);
             }
         }
@@ -134,8 +144,9 @@ public class ServiceEntry {
     }
 
     public Album createAlbum(String name, String url) throws RemoteException {
+        logger.trace("create album: name=" + name + ", url=" + url);
         try {
-            return (Album) collection.addEntry(
+            return (Album) rootEntry.addEntry(
                     parseEntry(
                             DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(
                                     httpUtil.postEntry(albums, AlbumImpl.createNewEntry(name, url))
@@ -150,13 +161,17 @@ public class ServiceEntry {
 
     public Photo createPhoto(String name, byte[] data, String id) throws RemoteException {
         try {
-            return (Photo) getEntries(httpUtil.postData(photos, name, data, id)).iterator().next();
+            return (Photo) parseEntries(httpUtil.postData(photos, name, data, id)).iterator().next();
         } catch (RemoteException e) {
             throw e;
         } catch (Exception e) {
             LoggerFactory.getLogger(getClass()).error(e.getMessage(), e);
             throw new RemoteException(e.getMessage(), e);
         }
+    }
+
+    public InputStream getData(String imageLink) throws HttpException, IOException {
+        return httpUtil.getStream(imageLink);
     }
 
 }

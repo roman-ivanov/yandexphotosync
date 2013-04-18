@@ -10,6 +10,10 @@ import ua.pp.bizon.sunc.remote.impl.RemoteException;
 
 public class UIPath implements Path {
 
+    public void mkdir(String name) throws RemoteException {
+        delegate.mkdir(name);
+    }
+
     private Path delegate;
 
     public UIPath(Path create) {
@@ -28,11 +32,7 @@ public class UIPath implements Path {
         return delegate.getName();
     }
 
-    public Path mkDirAndCD(String name) throws RemoteException {
-        return new UIPath(delegate.mkDirAndCD(name));
-    }
-
-    public byte[] getData() throws FileNotFoundException, IOException {
+    public byte[] getData() throws FileNotFoundException, IOException, RemoteException {
         return delegate.getData();
     }
 
@@ -42,6 +42,14 @@ public class UIPath implements Path {
 
     public boolean containsFile(String name) throws RemoteException {
         return delegate.containsFile(name);
+    }
+
+    public boolean containsFolder(String name) {
+        return delegate.containsFolder(name);
+    }
+
+    public Path getChildren(String name) throws RemoteException {
+        return new UIPath(delegate.getChildren(name));
     }
 
     public List<Path> listFiles() throws RemoteException {

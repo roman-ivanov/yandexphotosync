@@ -75,17 +75,24 @@ public class LocalPath implements Path {
     public String getName() {
         return path.getName();
     }
-
+    
     @Override
-    public Path mkDirAndCD(String name) {
-        LocalPath response = new LocalPath(new File(path, name));
-        response.path.mkdirs();
-        return response;
+    public void mkdir(String name) {
+        new File(path, name).mkdirs();        
+    }
+    @Override
+    public Path getChildren(String name) {
+        return new LocalPath(new File(path, name));
     }
 
     @Override
     public boolean containsFile(String name) {
         return new File(path, name).isFile();
+    }
+    
+    @Override
+    public boolean containsFolder(String name) {
+        return new File(path, name).isDirectory();
     }
 
     @Override

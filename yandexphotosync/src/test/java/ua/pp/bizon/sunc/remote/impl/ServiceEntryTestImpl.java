@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.LoggerFactory;
 
-final class ServiceEntryTestImpl extends ServiceEntry {
+public final class ServiceEntryTestImpl extends ServiceEntry {
     private static final byte[] buf_me;
     private static final byte[] buf_albums;
     private static final byte[] buf_photos;
@@ -27,7 +27,7 @@ final class ServiceEntryTestImpl extends ServiceEntry {
         buf_photos = photos;
     }
 
-    ServiceEntryTestImpl() {
+    public ServiceEntryTestImpl() {
         super("");
     }
 

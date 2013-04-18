@@ -17,13 +17,18 @@ public class Sync {
         logger.debug("sync from " + from + " to " + to);
         if (from.isDirectory()) {
             for (Path i : from.listDirectories()) {
-                sync(i, to.mkDirAndCD(i.getName()));
+                logger.debug("sync folder " + i.getName() + " in " + from.getPath());
+                if (!to.containsFolder(i.getName())){
+                    logger.debug("sunc: create new folder " + i.getName());
+                    to.mkdir(i.getName());
+                }
+                sync(i, to.getChildren(i.getName()));
             }
             for (Path i : from.listFiles()) {
-                byte[] data = i.getData();
+                logger.debug("sync file " + i.getName() + " in " + from.getPath());
                 if (!to.containsFile(i.getName())) {
                     logger.debug("upload photo " + i.getName() + " to " + to);
-                    to.uploadData(i.getName(), data);
+                    to.uploadData(i.getName(), i.getData());
                 }
             }
         } else {
