@@ -59,9 +59,10 @@ public class RootEntry implements Entry, Collection {
                 ((Album) e).addEntry(child);
             }
         }
-        if (e.getParentUrl() == null)
+        if (e.getParentUrl() == null){
+            e.setParent(this);
             return dao.save(e);
-        else {
+        } else {
             if (dao.findEntryByUrl(e.getParentUrl()) != null) {
                 return ((Album) dao.findEntryByUrl(e.getParentUrl())).addEntry(e);
             } else {

@@ -17,8 +17,7 @@ import ua.pp.bizon.sunc.remote.impl.RemoteException;
 public class LocalPath implements Path {
 
     private File path;
-    
-    
+
     @Override
     public Path getParent() {
         return new LocalPath(path.getParentFile());
@@ -72,14 +71,30 @@ public class LocalPath implements Path {
     }
 
     @Override
+    public List<Path> listDirectoriesAndFiles() {
+        LinkedList<Path> response = new LinkedList<Path>();
+        for (File i : path.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isDirectory() || (pathname.isFile() && pathname.getName().endsWith(".jpg"));
+            }
+        })) {
+            response.add(new LocalPath(i));
+        }
+        return response;
+    }
+
+    @Override
     public String getName() {
         return path.getName();
     }
-    
+
     @Override
     public void mkdir(String name) {
-        new File(path, name).mkdirs();        
+        new File(path, name).mkdirs();
     }
+
     @Override
     public Path getChildren(String name) {
         return new LocalPath(new File(path, name));
@@ -89,7 +104,7 @@ public class LocalPath implements Path {
     public boolean containsFile(String name) {
         return new File(path, name).isFile();
     }
-    
+
     @Override
     public boolean containsFolder(String name) {
         return new File(path, name).isDirectory();

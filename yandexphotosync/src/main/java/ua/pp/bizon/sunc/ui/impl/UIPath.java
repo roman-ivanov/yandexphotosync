@@ -27,6 +27,10 @@ public class UIPath implements Path {
     public List<Path> listDirectories() throws RemoteException {
         return delegate(delegate.listDirectories());
     }
+    @Override
+    public List<Path> listDirectoriesAndFiles() {
+        return delegate(delegate.listDirectoriesAndFiles());
+    }
 
     public String getName() {
         return delegate.getName();

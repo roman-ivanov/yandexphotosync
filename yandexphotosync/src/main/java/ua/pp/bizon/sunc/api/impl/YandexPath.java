@@ -54,6 +54,21 @@ public class YandexPath implements Path {
         }
         return response;
     }
+    
+    @Override
+    public List<Path> listDirectoriesAndFiles() {
+        LinkedList<Path> response = new LinkedList<Path>();
+        if (path instanceof Collection) {
+            for (Entry i : ((Collection) path).listDirectories()) {
+                response.add(new YandexPath(i));
+            }
+        }
+        if (path instanceof Album) {
+            for (Entry i : ((Album) path).listPhotos()) {
+                response.add(new YandexPath(i));
+            }
+        }
+        return response;    }
 
     @Override
     public String getName() {

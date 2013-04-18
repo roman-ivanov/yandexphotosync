@@ -32,4 +32,6 @@ public interface Path {
 
     void mkdir(String name) throws RemoteException;
 
+    List<Path> listDirectoriesAndFiles();
+
 }
