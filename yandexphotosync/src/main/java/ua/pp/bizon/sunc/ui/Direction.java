@@ -6,7 +6,9 @@ public enum Direction {
     RigthToLeft (0b10),
     Both        (0b11),
     Local     (0b1000),
-    Remote    (0b0100);
+    Remote    (0b0100),
+    FROM (0b010000),
+    TO   (0b100000);
     
     private int direction;
     

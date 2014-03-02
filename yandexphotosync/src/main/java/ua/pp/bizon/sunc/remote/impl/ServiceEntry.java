@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -22,6 +23,7 @@ import ua.pp.bizon.sunc.remote.Entry;
 import ua.pp.bizon.sunc.remote.Photo;
 import ua.pp.bizon.sunc.remote.api.HttpUtil;
 
+@Resource
 public class ServiceEntry {
 
     @Autowired
